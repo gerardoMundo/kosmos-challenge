@@ -19,6 +19,7 @@ export const App = () => {
         resizable={true}
         scalable={true}
         rotatable={true}
+        keepRatio={true}
       />
     </>
   );
