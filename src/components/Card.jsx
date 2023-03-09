@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
 
-export const Card = forwardRef(({ value, onChange }, ref) => {
+export const Card = forwardRef(({ value, onChange, url, title }, ref) => {
   return (
     <div className="parent">
       <img
@@ -8,8 +8,8 @@ export const Card = forwardRef(({ value, onChange }, ref) => {
         onChange={onChange}
         ref={ref}
         className="child"
-        src="https://via.placeholder.com/150/92c952"
-        alt="foto"
+        src={url}
+        alt={title}
       />
     </div>
   );

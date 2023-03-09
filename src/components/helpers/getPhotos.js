@@ -1,7 +1,11 @@
 import { api } from "../../services/api";
 
 export const getPhotos = async () => {
-  const resp = await api.get("/photos?albumId=1");
+  try {
+    const { data } = await api.get("/photos?albumId=1");
 
-  return resp;
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
 };
