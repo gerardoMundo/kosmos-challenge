@@ -1,34 +1,25 @@
-import React, { useEffect, useState } from "react";
+import { useRef } from "react";
+import { flushSync } from "react-dom";
+import Moveable from "react-moveable";
 import { Card } from "./components/Card";
-import { getPhotos } from "./components/helpers/getPhotos";
 
 import "./styles.css";
 
 export const App = () => {
-  const [photo, setPhoto] = useState([]);
-
-  useEffect(() => {
-    getPhotos()
-      .then((resp) => {
-        const { data } = resp;
-        setPhoto(data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+  const targetRef = useRef(null);
+  console.log(targetRef);
 
   return (
     <>
-      {photo.map((element) => {
-        return (
-          <Card
-            key={element.id}
-            url={element.thumbnailUrl}
-            title={element.title}
-          />
-        );
-      })}
+      <Card ref={targetRef} />
+      <Moveable
+        flushSync={flushSync}
+        target={targetRef.current}
+        draggable={true}
+        resizable={true}
+        scalable={true}
+        rotatable={true}
+      />
     </>
   );
 };
